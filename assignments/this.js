@@ -73,3 +73,22 @@ const gameThree = new Game({
 // Principle 4
 
 // code example for Explicit Binding
+
+function bio(){
+    console.log(`My name is ${this.name}, and I am a ${this.role}.`);
+}
+
+const personOne = {
+    name: 'Yuna',
+    role: 'summoner'
+}
+
+const personTwo = {
+    name: 'Tidus',
+    role: 'guardian'
+}
+
+bio.call(personOne); // call passes arguments immediately invokes the function
+
+personTwoBio = bio.bind(personTwo);
+personTwoBio(); // bind passes the arguments, and creates a new function to invoke later
