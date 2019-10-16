@@ -41,6 +41,35 @@ myCharacter.description();
 
 // code example for New Binding
 
+function Game(attr){
+    this.name = attr.name,
+    this.publisher = attr.publisher,
+    this.year = attr.year,
+    this.mainChar = attr.mainChar
+    console.log(this);
+}
+
+const gameOne = new Game({
+    name: 'Nier Gestalt',
+    publisher: 'Square Enix',
+    year: 2010,
+    mainChar: 'Nier'
+})
+
+const gameTwo = new Game({
+    name: 'Fallout: New Vegas',
+    publisher: 'Bethesda Softworks',
+    year: 2010,
+    mainChar: 'Courier'
+})
+
+const gameThree = new Game({
+    name: 'Bastion',
+    publisher: 'Warner Bros. Interactive Entertainment',
+    year: 2011,
+    mainChar: 'Kid'
+})
+
 // Principle 4
 
 // code example for Explicit Binding
