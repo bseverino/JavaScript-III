@@ -150,11 +150,20 @@ Humanoid.prototype.greet = function(){
   Villian.prototype = Humanoid.prototype;
 
   Villian.prototype.attack = function(target){
-    console.log(`${this.name} attacks ${target.name} for ${this.strength} damage.`);
-    target.healthPoints = target.healthPoints -= this.strength;
-    if (target.healthPoints <= 0) {
-      console.log(target.destroy());
-    }
+    let attackStrength = Math.ceil(Math.random() * ((this.strength + 3) - (this.strength - 3)) + (this.strength - 3));
+    if (this.healthPoints <= 0) {
+      console.log(`${this.name} is dead and can't attack.`);
+      return;
+    } else if (target.healthPoints <= 0) {
+      console.log (`${this.name} attacks ${target.name}, but ${target.name} is already dead.`);
+      return;
+    } else {      
+      console.log(`${this.name} attacks ${target.name} for ${attackStrength} damage.`);
+      target.healthPoints = target.healthPoints -= (Math.random() * attackStrength);
+      if (target.healthPoints <= 0) {
+        console.log(target.destroy());
+      }
+    }    
   }
 
   function Hero(attr){
@@ -163,11 +172,20 @@ Humanoid.prototype.greet = function(){
   }
   Hero.prototype = Humanoid.prototype;
   Hero.prototype.attack = function(target){
-    console.log(`${this.name} attacks ${target.name} for ${this.strength} damage.`);
-    target.healthPoints = target.healthPoints -= this.strength;
-    if (target.healthPoints <= 0) {
-      console.log(target.destroy());
-    }
+    let attackStrength = Math.ceil(Math.random() * ((this.strength + 2) - (this.strength - 2)) + (this.strength - 2));
+    if (this.healthPoints <= 0) {
+      console.log(`${this.name} is dead and can't attack.`);
+      return;
+    } else if (target.healthPoints <= 0) {
+      console.log (`${this.name} attacks ${target.name}, but ${target.name} is already dead.`);
+      return;
+    } else {      
+      console.log(`${this.name} attacks ${target.name} for ${attackStrength} damage.`);
+      target.healthPoints = target.healthPoints -= (Math.random() * attackStrength);
+      if (target.healthPoints <= 0) {
+        console.log(target.destroy());
+      }
+    }    
   }
 
   const wol = new Hero({
@@ -177,7 +195,7 @@ Humanoid.prototype.greet = function(){
       width: 2,
       height: 4,
     },
-    healthPoints: 15,
+    healthPoints: 12,
     name: 'Warrior of Light',
     team: 'Scions of the Seventh Dawn',
     weapons: [
@@ -194,7 +212,7 @@ Humanoid.prototype.greet = function(){
       width: 2,
       height: 4,
     },
-    healthPoints: 15,
+    healthPoints: 10,
     name: 'Emet Selch',
     team: 'Ascians',
     weapons: [
@@ -212,3 +230,8 @@ Humanoid.prototype.greet = function(){
   wol.attack(hades);
   hades.attack(wol);
   wol.attack(hades);
+  hades.attack(wol);
+  wol.attack(hades);
+  hades.attack(wol);
+  wol.attack(hades);
+  hades.attack(wol);
