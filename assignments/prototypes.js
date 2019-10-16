@@ -151,6 +151,7 @@ Humanoid.prototype.greet = function(){
 
   Villian.prototype.attack = function(target){
     console.log(`${this.name} attacks ${target.name} for ${this.strength} damage.`);
+    target.healthPoints = target.healthPoints -= this.strength;
     if (target.healthPoints <= 0) {
       console.log(target.destroy());
     }
@@ -161,3 +162,53 @@ Humanoid.prototype.greet = function(){
     this.strength = attr.strength
   }
   Hero.prototype = Humanoid.prototype;
+  Hero.prototype.attack = function(target){
+    console.log(`${this.name} attacks ${target.name} for ${this.strength} damage.`);
+    target.healthPoints = target.healthPoints -= this.strength;
+    if (target.healthPoints <= 0) {
+      console.log(target.destroy());
+    }
+  }
+
+  const wol = new Hero({
+    createdAt: new Date(),
+    dimensions: {
+      length: 1,
+      width: 2,
+      height: 4,
+    },
+    healthPoints: 15,
+    name: 'Warrior of Light',
+    team: 'Scions of the Seventh Dawn',
+    weapons: [
+      'Axe'
+    ],
+    language: 'Common',
+    strength: 4
+  });
+
+  const hades = new Villian({
+    createdAt: new Date(),
+    dimensions: {
+      length: 1,
+      width: 2,
+      height: 4,
+    },
+    healthPoints: 15,
+    name: 'Emet Selch',
+    team: 'Ascians',
+    weapons: [
+      'Grimoire',
+      'Gun'
+    ],
+    language: 'Amaurotine',
+    strength: 3
+  });
+
+  wol.attack(hades);
+  hades.attack(wol);
+  wol.attack(hades);
+  hades.attack(wol);
+  wol.attack(hades);
+  hades.attack(wol);
+  wol.attack(hades);
