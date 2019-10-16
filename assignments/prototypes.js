@@ -150,7 +150,7 @@ Humanoid.prototype.greet = function(){
   Villian.prototype = Humanoid.prototype;
 
   Villian.prototype.attack = function(target){
-    let attackStrength = Math.ceil(Math.random() * ((this.strength + 3) - (this.strength - 3)) + (this.strength - 3));
+    let attackStrength = Math.ceil(Math.ceil(Math.random() * 5) + this.strength);
     if (this.healthPoints <= 0) {
       console.log(`${this.name} is dead and can't attack.`);
       return;
@@ -172,7 +172,7 @@ Humanoid.prototype.greet = function(){
   }
   Hero.prototype = Humanoid.prototype;
   Hero.prototype.attack = function(target){
-    let attackStrength = Math.ceil(Math.random() * ((this.strength + 2) - (this.strength - 2)) + (this.strength - 2));
+    let attackStrength = (Math.ceil(Math.random() * 4) + this.strength);
     if (this.healthPoints <= 0) {
       console.log(`${this.name} is dead and can't attack.`);
       return;
@@ -202,7 +202,7 @@ Humanoid.prototype.greet = function(){
       'Axe'
     ],
     language: 'Common',
-    strength: 4
+    strength: 3
   });
 
   const hades = new Villian({
